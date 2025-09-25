@@ -1,0 +1,46 @@
+ body {
+     background-color: azure;
+     width: auto;
+     height: auto;
+ }
+
+ /* Footprint elements (created by event.js) */
+ .footprint {
+     position: absolute;
+     width: 50px;
+     height: 50px;
+     background-color: red;
+     transform: translate(-50%, -50%);
+     /* center on the coordinates */
+     pointer-events: none;
+     /* don't block pointer events while drawing */
+     border-radius: 4px;
+     /* small visual polish */
+ }
+
+ body .contextMenu {
+     position: absolute;
+     width: auto;
+     height: auto;
+     background-color: ghostwhite;
+     display: none;
+     z-index: 999;
+ }
+
+ .contextMenu .menu-item {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.contextMenu .menu-header{
+    padding: 4px 8px;
+    margin: auto;
+}
+
+ .contextMenu .menu-item:hover {
+  background: #eee;
+}
+
+ body .contextMenu.active{
+    display: flex;
+    flex-direction: column;
+ }

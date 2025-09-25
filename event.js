@@ -1,12 +1,18 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     let localX = null;
     let localY = null;
     function removePixelTimer(time) {
         setInterval(() => {
-            const firstChild = body.firstElementChild;
+            let firstChild = body.firstElementChild;
             if (firstChild) {
-                body.removeChild(firstChild);
+                while (true) {
+                    if (firstChild.className === "footprint") {
+                        body.removeChild(firstChild);
+                        break;
+                    }
+                    firstChild = firstChild.nextElementSibling;
+                }
             }
         }, time);
     }
@@ -20,13 +26,10 @@ window.onload = () => {
             localX = evt.clientX;
             localY = evt.clientY;
             const footprint = document.createElement('div');
-            footprint.style.position = 'absolute';
+            // use CSS class for styles; only position coordinates set inline
+            footprint.className = 'footprint';
             footprint.style.left = localX + 'px';
             footprint.style.top = localY + 'px';
-            footprint.style.width = '50px';
-            footprint.style.height = '50px';
-            footprint.style.backgroundColor = 'red';
-            footprint.style.transform = 'translate(-50%, -50%)'; // center on click
             body.appendChild(footprint);
         }
         console.log(body.childNodes.length);
@@ -37,10 +40,25 @@ window.onload = () => {
         body.removeEventListener('mouseup', cleanUp);
     };
 
-    body.addEventListener('mousedown', () => {
-        body.addEventListener('mousemove', drawElement);
-        body.addEventListener('mouseup', cleanUp);
+    body.addEventListener('mousedown', (evt) => {
+        if (evt.button === 0) {
+            body.addEventListener('mousemove', drawElement);
+            body.addEventListener('mouseup', cleanUp);
+        }
     });
 
+    // body.addEventListener("contextmenu", (evt) => {
+    //     evt.preventDefault();  // ✅ stops the menu
+    //     const menu = document.getElementById("customMenu");
+    //     if (menu.className === 'contextMenu') {
+    //         menu.className = "contextMenu active";
+    //         menu.style.top = evt.pageY + "px";
+    //         menu.style.left = evt.pageX + "px";
+    //     }else{
+    //         menu.className = "contextMenu";
+    //     }
+
+    // });
+
     console.log(body);
-}
+});
