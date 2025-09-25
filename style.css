@@ -5,7 +5,7 @@
  }
 
  /* Footprint elements (created by event.js) */
- .footprint {
+ .footprint{
      position: absolute;
      width: 50px;
      height: 50px;
@@ -14,9 +14,12 @@
      /* center on the coordinates */
      pointer-events: none;
      /* don't block pointer events while drawing */
-     border-radius: 4px;
-     /* small visual polish */
+     border-radius: 0px;
  }
+
+  .footprint.circle{
+    border-radius: 50%;
+  } 
 
  body .contextMenu {
      position: absolute;

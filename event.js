@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let firstChild = body.firstElementChild;
             if (firstChild) {
                 while (true) {
-                    if (firstChild.className === "footprint") {
+                    if(!firstChild) break;
+                    if (["footprint","footprint circle"].includes(firstChild.className)) {
                         body.removeChild(firstChild);
                         break;
                     }
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, time);
     }
 
-    removePixelTimer(100);
+    removePixelTimer(50);
 
     const drawElement = (evt) => {
         if (evt.clientX === localX && evt.clientY === localY) {
@@ -27,7 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
             localY = evt.clientY;
             const footprint = document.createElement('div');
             // use CSS class for styles; only position coordinates set inline
-            footprint.className = 'footprint';
+            switch(window.contextMenuOption){
+                case 'Square':
+                    footprint.className = 'footprint';
+                    break;
+                case 'Circle':
+                    footprint.className = 'footprint circle'
+                    break;
+            }
+            // footprint.className = 'footprint';
             footprint.style.left = localX + 'px';
             footprint.style.top = localY + 'px';
             body.appendChild(footprint);
@@ -46,19 +55,5 @@ document.addEventListener('DOMContentLoaded', () => {
             body.addEventListener('mouseup', cleanUp);
         }
     });
-
-    // body.addEventListener("contextmenu", (evt) => {
-    //     evt.preventDefault();  // ✅ stops the menu
-    //     const menu = document.getElementById("customMenu");
-    //     if (menu.className === 'contextMenu') {
-    //         menu.className = "contextMenu active";
-    //         menu.style.top = evt.pageY + "px";
-    //         menu.style.left = evt.pageX + "px";
-    //     }else{
-    //         menu.className = "contextMenu";
-    //     }
-
-    // });
-
     console.log(body);
 });
