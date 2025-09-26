@@ -1,4 +1,6 @@
-window.contextMenuOption = "Square";
+// window.contextMenuOption = "Square";
+
+export let contextMenuOption = "Square";
 
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuItem.forEach(item =>{
             item.addEventListener("click",(evt)=>{
                 // use the global window object and currentTarget to avoid target bubbling issues
-                window.contextMenuOption = evt.currentTarget.textContent;
+                contextMenuOption = evt.currentTarget.textContent;
                 menu.className = "contextMenu"; 
             })
         })

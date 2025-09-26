@@ -1,3 +1,5 @@
+import { contextMenuOption } from "./contextMenu.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     let localX = null;
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localY = evt.clientY;
             const footprint = document.createElement('div');
             // use CSS class for styles; only position coordinates set inline
-            switch(window.contextMenuOption){
+            switch(contextMenuOption){
                 case 'Square':
                     footprint.className = 'footprint';
                     break;
