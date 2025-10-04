@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (firstChild) {
                 while (true) {
                     if(!firstChild) break;
-                    if (["footprint","footprint circle"].includes(firstChild.className)) {
+                    if (["footprint","footprint circle", "triangle"].includes(firstChild.className)) {
                         body.removeChild(firstChild);
                         break;
                     }
@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 case 'Circle':
                     footprint.className = 'footprint circle'
+                    break;
+                case 'Triangle':
+                    footprint.className = 'triangle';
                     break;
             }
             // footprint.className = 'footprint';

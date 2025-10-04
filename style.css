@@ -21,14 +21,14 @@
     border-radius: 50%;
   } 
 
- body .contextMenu {
-     position: absolute;
-     width: auto;
-     height: auto;
-     background-color: ghostwhite;
-     display: none;
-     z-index: 999;
- }
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: solid 30px transparent;
+    border-right: solid 30px transparent;
+    border-bottom: solid 30px;
+    position: absolute;
+  }
 
  .contextMenu .menu-item {
   padding: 4px 8px;
